@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 import random
 from datetime import datetime
 app = Flask(__name__)
-app.secret_key = 'keep it secret'
+app.secret_key = 'secret key'
 
 @app.route('/')
 def show_index():
