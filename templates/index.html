@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ninja Money</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="goldShow">
+        Your Gold: <div>{{session['total']}}</div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <form action="/process_money" method="POST" class="tables-body" id="farmTable">
+                    <div class="margin-top-10">
+                        <h3>Farm</h3>
+                        <p>(earns 10-20 gold)</p>
+                        <input type="hidden" class="form-control" name="building" value="farm">
+                    </div>
+                    <button type="submit" class="btn btn-primary margin-top-10">Find Gold!</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form action="/process_money" method="post" class="tables-body" id="caveTable">
+                    <div class="margin-top-10">
+                        <h3>Cave</h3>
+                        <p>(earns 5-10 gold)</p>
+                        <input type="hidden" class="form-control" name="building" value="cave">
+                    </div>
+                    <button type="submit" class="btn btn-primary margin-top-10">Find Gold!</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+              <form action="/process_money" method="post" class="tables-body" id="houseTable">
+                <div class="margin-top-10">
+                    <h3>House</h3>
+                    <p>(earns 2-5 gold)</p>
+                    <input type="hidden" class="form-control" name="building" value="house">
+                </div>
+                <button type="submit" class="btn btn-primary margin-top-10">Find Gold!</button>
+              </form>
+            </div>
+            <div class="col-md-3">
+              <form action="/process_money" method="post" class="tables-body" id="casinoTable">
+                <div class="margin-top-10">
+                    <h3>Casino</h3>
+                    <p>(earns/takes 0-50 golds)</p>
+                    <input type="hidden" class="form-control" name="building" value="casino">
+                </div>
+                <button type="submit" class="btn btn-primary margin-top-10">Find Gold!</button>
+              </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="display-body">
+                    <p>Activities:</p>
+                    <div class="display-box">
+                        {% for item in session['history'] %}
+                            <p>{{ item }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col">
+              <form action="/restart" method="POST" id="restart">
+                <div class="restart-body">
+                    <button type="submit" class="btn btn-primary restart-btn">Restart!</button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
